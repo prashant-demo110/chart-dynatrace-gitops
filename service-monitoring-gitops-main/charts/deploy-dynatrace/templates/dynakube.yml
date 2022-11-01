@@ -2,8 +2,8 @@
 apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
 metadata:
-  name: {{ .Values.clusterName }}
-  namespace: dynatrace
+  name: dynakube
+  namespace: argocd
   annotations:
     feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
     feature.dynatrace.com/activegate-authtoken: "true"
@@ -13,7 +13,7 @@ spec:
   # For SaaS, set `YOUR_ENVIRONMENT_ID` to your environment ID.
   # For Managed, change the apiUrl address.
   # For instructions on how to determine the environment ID and how to configure the apiUrl address, see https://www.dynatrace.com/support/help/reference/dynatrace-concepts/environment-id/.
-  apiUrl: {{ .Values.apiUrl }}
+  #apiUrl: {{ .Values.apiUrl }}
 
   # Optional: name of secret holding `apiToken` and `paasToken`
   # If unset, name of custom resource is used
@@ -156,11 +156,11 @@ spec:
     #
     resources:
       requests:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 64m
+        memory: 64Mi
       limits:
-        cpu: 1000m
-        memory: 1.5Gi
+        cpu: 128m
+        memory: 128Mi
 
     # Optional: labels are customer defined labels for ActiveGate Pods to structure workloads as desired.
     #
