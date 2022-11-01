@@ -4,7 +4,7 @@ apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: dynatrace-webhook
-  namespace: dynatrace
+  namespace: argocd
 spec:
   minAvailable: 1
   selector:
@@ -29,7 +29,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: dynatrace-activegate
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -53,7 +53,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: dynatrace-kubernetes-monitoring
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -77,7 +77,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: dynatrace-dynakube-oneagent-privileged
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -102,7 +102,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: dynatrace-dynakube-oneagent-unprivileged
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -127,7 +127,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: dynatrace-operator
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -151,7 +151,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: dynatrace-webhook
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -171,7 +171,7 @@ spec:
       clientConfig:
         service:
           name: dynatrace-webhook
-          namespace: dynatrace
+          namespace: argocd
           path: /convert
       conversionReviewVersions:
       - v1beta1
@@ -3773,7 +3773,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: dynatrace-kubernetes-monitoring
-    namespace: dynatrace
+    namespace: argocd
 ---
 # Source: dynatrace-operator/templates/Common/operator/clusterrolebinding-operator.yaml
 # Copyright 2021 Dynatrace LLC
@@ -3800,7 +3800,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: dynatrace-operator
-    namespace: dynatrace
+    namespace: argocd
 roleRef:
   kind: ClusterRole
   name: dynatrace-operator
@@ -3831,7 +3831,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: dynatrace-webhook
-    namespace: dynatrace
+    namespace: argocd
 roleRef:
   kind: ClusterRole
   name: dynatrace-webhook
@@ -3855,7 +3855,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: dynatrace-operator
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4015,7 +4015,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: dynatrace-webhook
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4090,7 +4090,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: dynatrace-operator
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4121,7 +4121,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: dynatrace-webhook
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4129,7 +4129,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: dynatrace-webhook
-    namespace: dynatrace
+    namespace: argocd
 roleRef:
   kind: Role
   name: dynatrace-webhook
@@ -4153,7 +4153,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: dynatrace-webhook
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4186,7 +4186,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dynatrace-operator
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4306,7 +4306,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dynatrace-webhook
-  namespace: dynatrace
+  namespace: argocd
   labels:
     app.kubernetes.io/name: dynatrace-operator
     app.kubernetes.io/version: "0.9.0"
@@ -4459,7 +4459,7 @@ webhooks:
     clientConfig:
       service:
         name: dynatrace-webhook
-        namespace: dynatrace
+        namespace: argocd
         path: /inject
     admissionReviewVersions: [ "v1beta1", "v1" ]
     sideEffects: None
@@ -4476,7 +4476,7 @@ webhooks:
     clientConfig:
       service:
         name: dynatrace-webhook
-        namespace: dynatrace
+        namespace: argocd
         path: /label-ns
     admissionReviewVersions: [ "v1beta1", "v1" ]
     sideEffects: None
@@ -4511,7 +4511,7 @@ webhooks:
     clientConfig:
       service:
         name: dynatrace-webhook
-        namespace: dynatrace
+        namespace: argocd
         path: /validate
     rules:
       - operations:
